@@ -1,7 +1,5 @@
-require "frontkit-rails/version"
+require 'frontkit-rails/engine' if defined?(Rails)
+require 'frontkit-rails/version'
 
-module Frontkit
-  module Rails
-    # Your code goes here...
-  end
+module FrontKit
 end

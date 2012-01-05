@@ -1,5 +1,3 @@
-module Frontkit
-  module Rails
-    VERSION = "0.0.1"
-  end
+module FrontKit
+  VERSION = '0.0.1'
 end
