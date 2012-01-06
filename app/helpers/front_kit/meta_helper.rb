@@ -1,6 +1,6 @@
 module FrontKit
   module MetaHelper
-    
+
     def meta_tags
       push_meta_tag property: 'fk:state', content: FrontKit.encode(frontend_state)
       String.new.tap do |buffer|
@@ -10,6 +10,6 @@ module FrontKit
         end
       end.html_safe
     end
-    
+
   end
 end
