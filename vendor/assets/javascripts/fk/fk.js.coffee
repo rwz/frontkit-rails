@@ -6,14 +6,13 @@ this.FK = FK = FrontKit =
     JSON.parse(Base64.decode64(str))
 
   meta: (id) ->
-    @Driver.meta(id)
+    jQuery("""meta[property="#{str}"]""").attr('content')
 
   log: (args...) ->
     args.unshift('FK:')
     console.log(args...)
 
-  ready: (callback) ->
-    @Driver.onready(callback)
+  ready: (callback) -> jQuery(callback)
 
   push: (callback) ->
     @updaters.push(callback)
@@ -21,7 +20,7 @@ this.FK = FK = FrontKit =
   update: (element=document) ->
     @log "Running application update on: ", element
     for updater in @updaters
-      updater.call null, @Driver.prepare(element)
+      updater.call null, jQuery(element)
 
   init: ->
     if content = @meta('fk:state')
@@ -46,7 +45,7 @@ this.FK = FK = FrontKit =
 
 class State
   constructor: (state) ->
-    FK.Driver.extend this, state
+    jQuery.extend this, state
 
   get: (path) ->
     for chunk in path.split('.')
@@ -54,3 +53,5 @@ class State
       return null unless value?
 
     value
+
+FK.init()
