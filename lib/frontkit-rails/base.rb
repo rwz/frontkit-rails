@@ -24,7 +24,7 @@ module FrontKit
     end
 
     def push_frontend_state(key, value)
-      front_end_state[key] = value
+      frontend_state[key] = value
     end
 
     def merge_frontend_state(hash)
