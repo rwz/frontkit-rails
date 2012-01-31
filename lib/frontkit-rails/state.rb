@@ -1,4 +1,6 @@
+require 'active_support/hash_with_indifferent_access'
+
 module FrontKit
-  class State < HashWithIndifferentAccess
+  class State < ActiveSupport::HashWithIndifferentAccess
   end
 end
