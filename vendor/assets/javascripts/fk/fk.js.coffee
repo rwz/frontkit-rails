@@ -5,6 +5,9 @@ this.FK = FK = FrontKit =
   decode: (str) ->
     JSON.parse(Base64.decode64(str))
 
+  encode: (object) ->
+    Base64.encode64(JSON.stringify(object))
+
   meta: (id) ->
     jQuery("""meta[property="#{id}"]""").attr('content')
 
