@@ -1,6 +1,6 @@
 this.Unicode =
   unpack: (utfstring) ->
-    utfstring = utfstring.replace /\r\n/g, '\n'
+    utfstring = utfstring.replace /\r\n/g, "\n"
     string = ''
 
     for i in [0 .. utfstring.length]
