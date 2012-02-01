@@ -3,7 +3,7 @@ this.Unicode =
     utfstring = utfstring.replace /\r\n/g, "\n"
     string = ''
 
-    for i in [0 .. utfstring.length]
+    for i in [0 ... utfstring.length]
       c = utfstring.charCodeAt(i)
 
       if c < 128
