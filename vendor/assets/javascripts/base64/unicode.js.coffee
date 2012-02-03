@@ -1,3 +1,5 @@
+strFromCharCode = String.fromCharCode
+
 this.Unicode =
   unpack: (utfstring) ->
     utfstring = utfstring.replace /\r\n/g, "\n"
@@ -7,14 +9,14 @@ this.Unicode =
       c = utfstring.charCodeAt(i)
 
       if c < 128
-        string += String.fromCharCode(c)
+        string += strFromCharCode(c)
       else if (c > 127) && (c < 2048)
-        string += String.fromCharCode((c >> 6) | 192)
-        string += String.fromCharCode((c & 63) | 128)
+        string += strFromCharCode((c >> 6) | 192)
+        string += strFromCharCode((c & 63) | 128)
       else
-        string += String.fromCharCode((c >> 12) | 224)
-        string += String.fromCharCode(((c >> 6) & 63) | 128)
-        string += String.fromCharCode((c & 63) | 128)
+        string += strFromCharCode((c >> 12) | 224)
+        string += strFromCharCode(((c >> 6) & 63) | 128)
+        string += strFromCharCode((c & 63) | 128)
 
     string
 
@@ -27,16 +29,16 @@ this.Unicode =
       c = string.charCodeAt(i)
 
       if c < 128
-        utfstring += String.fromCharCode(c)
+        utfstring += strFromCharCode(c)
         i++
       else if (c > 191) && (c < 224)
         c2 = string.charCodeAt(i+1)
-        utfstring += String.fromCharCode(((c & 31) << 6) | (c2 & 63))
+        utfstring += strFromCharCode(((c & 31) << 6) | (c2 & 63))
         i += 2
       else
         c2 = string.charCodeAt(i+1)
         c3 = string.charCodeAt(i+2)
-        utfstring += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63))
+        utfstring += strFromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63))
         i += 3
 
     utfstring
