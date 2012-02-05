@@ -1,10 +1,11 @@
 require 'base64'
 require 'multi_json'
+require 'active_support/core_ext/module/delegation'
 
 module FrontKit
   class Serializer
     def encode(hash)
-      Base64.encode64(MultiJson.encode(hash)).strip
+      Base64.encode64(MultiJson.encode(hash)).gsub(/\s+/, '')
     end
     
     def decode(str)

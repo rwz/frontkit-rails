@@ -1,7 +1,8 @@
+require 'active_support'
 require 'frontkit-rails/serializer'
 require 'frontkit-rails/state'
 require 'frontkit-rails/meta_container'
-require 'active_support/concern'
+
 
 module FrontKit
   module Base
