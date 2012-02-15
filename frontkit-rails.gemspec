@@ -18,8 +18,8 @@ Gem::Specification.new do |s|
 
   # specify any dependencies here; for example:
   s.add_development_dependency 'rspec'
-  s.add_development_dependency 'execjs'
   s.add_runtime_dependency 'railties', '>= 3.1.0'
+  s.add_runtime_dependency 'activesupport', '>= 3.1.0'
   s.add_runtime_dependency 'sprockets'
   s.add_runtime_dependency 'multi_json'
 end
