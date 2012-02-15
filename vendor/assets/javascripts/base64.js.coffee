@@ -1,6 +1,6 @@
 characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
 fromCharCode = String.fromCharCode
-invalidCharacters = /[^a-z\d\+\=\/]/ig
+INVALID_CHARACTERS = /[^a-z\d\+\=\/]/ig
 max = Math.max
 
 try
@@ -67,4 +67,4 @@ decode64 = window.atob || (input) ->
 
 this.Base64 =
   encode64: (str) -> encode64(unescape(encodeURIComponent(str)))
-  decode64: (str) -> decodeURIComponent(escape(decode64(str)))
+  decode64: (str) -> decodeURIComponent(escape(decode64(str.replace(INVALID_CHARACTERS, ''))))
