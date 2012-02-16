@@ -1,7 +1,6 @@
-characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
+CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
+REMOVE_CHARACTERS = /[^a-z\d\+\=\/]/ig
 fromCharCode = String.fromCharCode
-INVALID_CHARACTERS = /[^a-z\d\+\=\/]/ig
-max = Math.max
 
 try
   document.createElement '$'
@@ -20,7 +19,7 @@ encode64 = window.btoa || (input) ->
     chr2 = input.charCodeAt(i++) || 0
     chr3 = input.charCodeAt(i++) || 0
 
-    if max(chr1, chr2, chr3) > 0xFF
+    if Math.max(chr1, chr2, chr3) > 0xFF
       throw INVALID_CHARACTER_ERR
 
     enc1 = chr1 >> 2
@@ -34,7 +33,7 @@ encode64 = window.btoa || (input) ->
       enc4 = 64
 
     for char in [ enc1, enc2, enc3, enc4 ]
-      output += characters.charAt(char)
+      output += CHARACTERS.charAt(char)
 
   output
 
@@ -48,10 +47,10 @@ decode64 = window.atob || (input) ->
 
   while i < length
 
-    enc1 = characters.indexOf input.charAt(i++)
-    enc2 = characters.indexOf input.charAt(i++)
-    enc3 = characters.indexOf input.charAt(i++)
-    enc4 = characters.indexOf input.charAt(i++)
+    enc1 = CHARACTERS.indexOf input.charAt(i++)
+    enc2 = CHARACTERS.indexOf input.charAt(i++)
+    enc3 = CHARACTERS.indexOf input.charAt(i++)
+    enc4 = CHARACTERS.indexOf input.charAt(i++)
 
     chr1 = (enc1 << 2) | (enc2 >> 4)
     chr2 = ((enc2 & 15) << 4) | (enc3 >> 2)
@@ -61,10 +60,12 @@ decode64 = window.atob || (input) ->
 
     if enc3 != 64
       output += fromCharCode(chr2)
+
     if enc4 != 64
       output += fromCharCode(chr3)
+
   output
 
 this.Base64 =
   encode64: (str) -> encode64(unescape(encodeURIComponent(str)))
-  decode64: (str) -> decodeURIComponent(escape(decode64(str.replace(INVALID_CHARACTERS, ''))))
+  decode64: (str) -> decodeURIComponent(escape(decode64(str.replace(REMOVE_CHARACTERS, ''))))
