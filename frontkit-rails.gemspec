@@ -21,5 +21,8 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'railties', '>= 3.1.0'
   s.add_runtime_dependency 'activesupport', '>= 3.1.0'
   s.add_runtime_dependency 'sprockets'
-  s.add_runtime_dependency 'multi_json'
+  s.add_runtime_dependency 'coffee-rails'
+  s.add_runtime_dependency 'jquery-rails'
+  s.add_runtime_dependency 'role-rails'
+  s.add_runtime_dependency 'multi_json', '~> 1.3.2'
 end
